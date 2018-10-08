@@ -9,7 +9,6 @@ sudo apt-get install -y docker-ce
 sudo apt install sshpass
 sshpass -p $2 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $1@$3:/tmp/file.txt /home/$1/siba.txt
 sshpass -p $2 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $1@$3:/home/$1/init.sh /home/$1/init.sh
-pwd >> /tmp/file2.txt
 cd /home/$1
 sudo chmod 777 init.sh 
 sudo ./init.sh 
