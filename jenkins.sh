@@ -1,4 +1,5 @@
 #!/bin/bash
+echo $@ >> /tmp/file.txt
 sudo apt-get update -y
 sudo apt-get install openjdk-8-jre openjdk-8-jre-headless openjdk-8-jdk -y
 sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
