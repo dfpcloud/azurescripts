@@ -1,8 +1,7 @@
 #!/bin/bash
 sudo apt-get update -y
 sudo apt-get install nodejs -y
-sudo docker --version > /tmp/test.txt
-sudo docker swarm init >> /var/log/user-data.log                        
+sudo docker swarm init                        
 sudo sed -i '/ExecStart/c\ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:4243' /lib/systemd/system/docker.service                       
 sudo systemctl daemon-reload
 sudo service docker restart
