@@ -11,7 +11,7 @@ while [ ! -f /var/lib/jenkins/secrets/initialAdminPassword ]
 do
 sleep 2
 done
-until sudo echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount($1, $2)' | java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` groovy =; do
+until sudo echo "jenkins.model.Jenkins.instance.securityRealm.createAccount(\"$1\", \"$2\")" | java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` groovy =; do
         sleep 2s
 done
 sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` install-plugin -restart Git JUnit Gradle GitHub
