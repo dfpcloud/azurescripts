@@ -17,7 +17,7 @@ done
 sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` install-plugin -restart Git JUnit Gradle GitHub
 sudo sed -i s/NEW/RUNNING/g /var/lib/jenkins/config.xml
 echo "<com.cloudbees.plugins.credentials.domains.Domain>
-    <name>GithubCredentialsTest</name>
+    <name>GithubCredentials</name>
 </com.cloudbees.plugins.credentials.domains.Domain>" | java -jar jenkins-cli.jar -s http://localhost:8080/ create-credentials-domain-by-xml "SystemCredentialsProvider::SystemContextResolver::jenkins"
 echo "<com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>
   <scope>GLOBAL</scope>
