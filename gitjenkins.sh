@@ -15,7 +15,7 @@ done
 until sudo echo "jenkins.model.Jenkins.instance.securityRealm.createAccount(\"$1\", \"$2\")" | java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` groovy =; do
                 sleep 2s
         done
-sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` install-plugin -restart Git JUnit Gradle GitHub
+#sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` install-plugin -restart Git JUnit Gradle GitHub
 sudo sed -i s/NEW/RUNNING/g /var/lib/jenkins/config.xml
 until echo "<com.cloudbees.plugins.credentials.domains.Domain>
     <name>GithubCredentials</name>
@@ -31,5 +31,4 @@ sudo echo "<com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsIm
                        <password>$5</password>
                        </com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>"  | sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` create-credentials-by-xml "SystemCredentialsProvider::SystemContextResolver::jenkins" GithubCredentials
 #sudo service jenkins restart
-#sudo apt update -y
-#sudo apt install openjdk-8-jdk -y
+
