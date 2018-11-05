@@ -30,5 +30,5 @@ sudo echo "<com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsIm
                      <username>$4</username>
                        <password>$5</password>
                        </com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>"  | sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth admin:`sudo cat /var/lib/jenkins/secrets/initialAdminPassword` create-credentials-by-xml "SystemCredentialsProvider::SystemContextResolver::jenkins" GithubCredentials
-#sudo service jenkins restart
+sudo service jenkins restart
 
