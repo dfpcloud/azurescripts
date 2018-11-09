@@ -6,8 +6,13 @@ sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key ad
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt-get update -y
 sudo apt-get install jenkins -y
-#sudo apt-get install jenkins=2.121.1 -y
 sudo systemctl start jenkins
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+sudo apt install docker-ce -y
 while [ ! -f /var/lib/jenkins/secrets/initialAdminPassword ]
 do
         sleep 2
@@ -17,5 +22,3 @@ until sudo echo "jenkins.model.Jenkins.instance.securityRealm.createAccount(\"$1
         done
 sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth $1:$2 install-plugin -restart github-branch-source Git JUnit Gradle GitHub
 sudo sed -i s/NEW/RUNNING/g /var/lib/jenkins/config.xml
-sudo service jenkins restart
-
