@@ -8,5 +8,8 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update -y
 apt-cache policy docker-ce -y
 sudo apt install docker-ce -y
-sudo usermod -aG docker $1
+a=$(id -g)
+sudo newgrp docker
+sudo newgrp $a
+
 
