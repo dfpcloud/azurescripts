@@ -22,3 +22,4 @@ until sudo echo "jenkins.model.Jenkins.instance.securityRealm.createAccount(\"$1
         done
 sudo java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s http://127.0.0.1:8080/ -auth $1:$2 install-plugin -restart github-branch-source Git JUnit Gradle GitHub
 sudo sed -i s/NEW/RUNNING/g /var/lib/jenkins/config.xml
+echo "jenkins ALL=(ALL) NOPASSWD: ALL " | sudo EDITOR='tee -a' visudo
