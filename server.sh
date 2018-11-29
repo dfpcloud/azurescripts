@@ -12,8 +12,8 @@ sudo usermod -aG docker $1
 sudo docker swarm init
 sudo sed -i '/ExecStart/c\ExecStart=/usr/bin/dockerd -H unix:// -H=tcp://0.0.0.0:4243' /lib/systemd/system/docker.service
 #sudo sed -i '/ExecStart/c\ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:4243' /lib/systemd/system/docker.service
-#sudo systemctl daemon-reload
-#sudo service docker restart
+sudo systemctl daemon-reload
+sudo service docker restart
 #sudo curl http://localhost:4243/version >> /var/log/user-data.log
 sudo docker network create -d overlay devone
 sudo docker swarm join-token worker >> /home/$1/init.sh
